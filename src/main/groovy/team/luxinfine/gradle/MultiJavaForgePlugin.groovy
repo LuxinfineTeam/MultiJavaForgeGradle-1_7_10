@@ -332,6 +332,7 @@ class MultiJavaForgePlugin implements Plugin<Project> {
                 canBeConsumed = false
                 canBeResolved = true
                 extendsFrom project.configurations.implementation
+                extendsFrom project.configurations.compileOnly
             }
         }
 
