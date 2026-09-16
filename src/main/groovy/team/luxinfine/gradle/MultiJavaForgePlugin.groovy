@@ -54,8 +54,7 @@ class MultiJavaForgePlugin implements Plugin<Project> {
             options.encoding = 'UTF-8'
         }
         project.tasks.named('compileJava', JavaCompile) {
-            sourceCompatibility = '8'
-            targetCompatibility = '8'
+            options.release = 8
         }
     }
 
