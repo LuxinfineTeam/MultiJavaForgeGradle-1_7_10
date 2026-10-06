@@ -1,13 +1,12 @@
 package team.luxinfine.gradle
 
-import java.nio.charset.StandardCharsets
+
 import java.nio.file.Files
 import java.nio.file.Paths
 import java.nio.file.StandardCopyOption
 import java.util.regex.Pattern
 import java.util.stream.Collectors
 
-import groovy.lang.Closure
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.JavaExec
@@ -406,7 +405,11 @@ class MultiJavaForgePlugin implements Plugin<Project> {
         reobfTask.getObfuscated().each { artifact ->
             project.logger.lifecycle("  Input: ${artifact.getToObf()}")
             project.logger.lifecycle("  Output: ${artifact.getFile()}")
-            project.logger.lifecycle("  Classpath: " + (artifact.classpath != null ? artifact.classpath.files.size() + ' files' : 'null'))
+            try {
+                project.logger.lifecycle("  Classpath: " + (artifact.classpath != null ? artifact.classpath.files.size() + ' files' : 'null'))
+            } catch(ignored) {
+                project.logger.lifecycle("  Classpath: <unresolved>")
+            }
         }
     }
 
