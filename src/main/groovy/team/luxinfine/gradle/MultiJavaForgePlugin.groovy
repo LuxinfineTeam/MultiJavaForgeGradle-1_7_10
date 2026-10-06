@@ -65,7 +65,9 @@ class MultiJavaForgePlugin implements Plugin<Project> {
         if (createJava25) {
             project.tasks.register('compileJava25', JavaCompile) {
                 source = project.sourceSets.main.java
-                classpath = project.sourceSets.main.compileClasspath
+                classpath = project.files {
+                    project.sourceSets.main.compileClasspath
+                }
                 destinationDirectory = project.layout.buildDirectory.dir('classes/java25/main')
                 javaCompiler = project.javaToolchains.compilerFor {
                     languageVersion = JavaLanguageVersion.of(25)
