@@ -12,16 +12,8 @@ plugins {
     id 'maven-publish'
 }
 
-def jitpackBuild = System.getenv('JITPACK') == 'true'
-def publishedGroup = jitpackBuild
-        ? providers.gradleProperty('group').getOrElse('com.github.LuxinfineTeam')
-        : 'team.luxinfine.gradle'
-def publishedVersion = jitpackBuild
-        ? providers.gradleProperty('version').getOrElse('0.0.0-local')
-        : '1.0'
-
-group = publishedGroup
-version = publishedVersion
+group = 'team.luxinfine.gradle'
+version = '1.0'
 
 repositories {
     mavenCentral()
@@ -57,9 +49,7 @@ publishing {
             from(components["java"])
 
             groupId = project.group
-            artifactId = jitpackBuild
-                    ? (System.getenv('ARTIFACT') ?: project.name)
-                    : 'MultiJavaFG'
+            artifactId = "MultiJavaFG"
             version = project.version
 
             pom {
