@@ -1,4 +1,8 @@
 jdk:
   - openjdk25
 install:
+  # Почему-то jitpack выдает ошибку
+  # Error: An unexpected error occurred while trying to open file /home/jitpack/build/gradle/wrapper/gradle-wrapper.jar
+  # Возможно проблемы с правами на стороне их клонера репы?..
+  - chmod -R 755 .
   - ./gradlew clean build publishToMavenLocal
